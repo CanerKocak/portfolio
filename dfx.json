@@ -1,0 +1,30 @@
+{
+  "canisters": {
+    "portfolio2_backend": {
+      "candid": "src/portfolio2_backend/portfolio2_backend.did",
+      "declarations": {
+        "node_compatibility": true
+      },
+      "package": "portfolio2_backend",
+      "type": "rust"
+    },
+    "portfolio2_frontend": {
+      "dependencies": [
+        "portfolio2_backend"
+      ],
+      "source": [
+        "src/portfolio2_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "portfolio2_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
