@@ -13,7 +13,10 @@
   "dependencies": {
     "@dfinity/agent": "^0.20.0",
     "@dfinity/candid": "^0.20.0",
-    "@dfinity/principal": "^0.20.0"
+    "@dfinity/principal": "^0.20.0",
+    "@codemirror/lang-rust": "^6.0.0",
+    "@codemirror/theme-one-dark": "^6.0.0",
+    "codemirror": "^6.0.1"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^2.0.0",
