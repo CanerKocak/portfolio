@@ -11,7 +11,7 @@
   function handleKeydown(event) {
     if (event.key === 'Enter') {
       commandHistory = [...commandHistory, `$ ${currentCommand}`];
-      
+
       const command = currentCommand.toLowerCase().trim();
       if (commands[command]) {
         commandHistory = [...commandHistory, commands[command]];
@@ -35,7 +35,6 @@
       on:keydown={handleKeydown}
       class="bg-transparent outline-none flex-grow text-green-400"
       type="text"
-      autofocus
     />
   </div>
 </div>

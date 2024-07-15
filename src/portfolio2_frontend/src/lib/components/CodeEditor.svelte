@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  import { writable } from 'svelte/store';
   import { EditorView, basicSetup } from 'codemirror';
   import { rust } from '@codemirror/lang-rust';
   import { oneDark } from '@codemirror/theme-one-dark';
@@ -7,12 +8,27 @@
   import { EditorState } from '@codemirror/state';
 
   export let content = '';
-  let editor;
   let element;
-  let isMobile = false;
+  let editor;
+  const isMobile = writable(false);
+
+  $: if (editor && content !== editor.state.doc.toString()) {
+    editor.dispatch({
+      changes: { from: 0, to: editor.state.doc.length, insert: content }
+    });
+  }
 
   onMount(() => {
-    toggleFolds();
+    initializeEditor();
+    setupResizeListener();
+
+    return () => {
+      editor?.destroy();
+      window.removeEventListener('resize', handleResize);
+    };
+  });
+
+  function initializeEditor() {
     const startState = EditorState.create({
       doc: content,
       extensions: [
@@ -21,13 +37,8 @@
         oneDark,
         lineNumbers(),
         EditorState.tabSize.of(4),
-        EditorView.updateListener.of((update) => {
-          if (update.docChanged) {
-            content = update.state.doc.toString();
-          }
-        }),
+        EditorView.updateListener.of(handleEditorUpdate),
       ],
-      
     });
 
     editor = new EditorView({
@@ -35,45 +46,38 @@
       parent: element,
     });
 
-    const checkMobile = () => {
-      isMobile = window.innerWidth <= 768;
-      if (editor) {
-        editor.dispatch({
-          effects: EditorView.updateListener.of((update) => {
-            update.view.dom.style.fontSize = isMobile ? '12px' : '14px';
-          })
-        });
-      }
-    };
+    toggleFolds();
+  }
 
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
+  function handleEditorUpdate(update) {
+    if (update.docChanged) {
+      content = update.state.doc.toString();
+    }
+  }
 
-    return () => {
-      editor.destroy();
-      window.removeEventListener('resize', checkMobile);
-    };
-  });
+  function setupResizeListener() {
+    handleResize();
+    window.addEventListener('resize', handleResize);
+  }
 
-  $: {
-    if (editor && content !== editor.state.doc.toString()) {
+  function handleResize() {
+    $isMobile = window.innerWidth <= 768;
+    updateEditorFontSize();
+  }
+
+  function updateEditorFontSize() {
+    if (editor) {
       editor.dispatch({
-        changes: { from: 0, to: editor.state.doc.length, insert: content }
+        effects: EditorView.updateListener.of((update) => {
+          update.view.dom.style.fontSize = $isMobile ? '12px' : '14px';
+        })
       });
     }
   }
 
-function toggleFolds() {
-  if (!editor) return;
-  
-  let folds = foldBoilerplate(editor);
-  folds.forEach(fold => {
-    foldCode(editor, fold.from, fold.to);
-  });
-}
 </script>
 
-<div class="editor-container" class:mobile={isMobile} bind:this={element}></div>
+<div class="editor-container" class:mobile={$isMobile} bind:this={element}></div>
 
 <style>
   .editor-container {
