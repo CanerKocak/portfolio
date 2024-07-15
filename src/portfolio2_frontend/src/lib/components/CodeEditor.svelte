@@ -7,12 +7,12 @@
   import { EditorState } from '@codemirror/state';
 
   export let content = '';
-  export let language = 'rust';
   let editor;
   let element;
   let isMobile = false;
 
   onMount(() => {
+    toggleFolds();
     const startState = EditorState.create({
       doc: content,
       extensions: [
@@ -21,13 +21,13 @@
         oneDark,
         lineNumbers(),
         EditorState.tabSize.of(4),
-        EditorState.readOnly.of(true),
         EditorView.updateListener.of((update) => {
           if (update.docChanged) {
             content = update.state.doc.toString();
           }
         }),
       ],
+      
     });
 
     editor = new EditorView({
@@ -62,6 +62,15 @@
       });
     }
   }
+
+function toggleFolds() {
+  if (!editor) return;
+  
+  let folds = foldBoilerplate(editor);
+  folds.forEach(fold => {
+    foldCode(editor, fold.from, fold.to);
+  });
+}
 </script>
 
 <div class="editor-container" class:mobile={isMobile} bind:this={element}></div>
