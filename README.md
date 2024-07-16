@@ -1,3 +1,5 @@
+https://v6f4s-raaaa-aaaag-alffa-cai.icp0.io/
+
 ## Deployment
 This project is built to be deployed on the Internet Computer (IC) platform. Follow these steps to deploy the application:
 
