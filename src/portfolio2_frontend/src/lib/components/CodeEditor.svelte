@@ -46,7 +46,6 @@
       parent: element,
     });
 
-    toggleFolds();
   }
 
   function handleEditorUpdate(update) {
