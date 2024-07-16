@@ -88,7 +88,7 @@ fn main() {
     let projects = vec![
         Project {
             name: "DittoICP",
-            url: "www.dittoicp.com",
+            url: "https://www.dittoicp.com",
             description: "A solo project developed using SvelteKit for the frontend and Rust for the backend, deployed on the Internet Computer Protocol (ICP).",
             role: "Full-stack Developer",
             technologies: vec!["JavaScript", "SvelteKit", "Rust", "Internet Computer Protocol (ICP)"],
@@ -101,7 +101,7 @@ fn main() {
         },
         Project {
             name: "Windoge98",
-            url: "desktop.windoge98.com",
+            url: "https://desktop.windoge98.com / https://github.com/SysLogica/windoge98-vue",
             description: "A collaborative project recreating a Windows 98-like desktop environment in the browser.",
             role: "Frontend Developer",
             technologies: vec!["TypeScript", "Vue.js"],
@@ -110,6 +110,19 @@ fn main() {
                 "Developed boot screen and shutdown sequences",
                 "Enhanced window handling functionality",
                 "Made various UI tweaks and improvements",
+            ],
+        },
+        Project {
+            name: "Dogvertiser",
+            url: "https://dogverts.windoge98.com/",
+            description: "An extension of the Windoge98 project, allowing users to create and manage dog-themed advertisements.",
+            role: "Full-stack Developer",
+            technologies: vec!["TypeScript", "Sveltekit", "Motoko"],
+            contributions: vec![
+                "Implemented image cropping and zoom functionality for ad creation",
+                "Improved user interface for intuitive ad creation workflow",
+                "Developed backend logic in Motoko for efficient ad storage and retrieval",
+                "Optimized memory management using Motoko's region-based system",
             ],
         },
     ];
