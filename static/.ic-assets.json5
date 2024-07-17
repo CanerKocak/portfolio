@@ -1,0 +1,12 @@
+[
+  {
+    "match": ".well-known",
+    "ignore": false,
+    "headers": {
+      "Content-Security-Policy": "default-src * 'unsafe-eval' 'unsafe-inline'; connect-src *; img-src * data:; style-src * 'unsafe-inline'; font-src *; object-src *; base-uri *; frame-ancestors *; form-action *;",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+      "Access-Control-Allow-Headers": "*"
+    }
+  }
+]

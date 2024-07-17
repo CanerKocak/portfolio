@@ -1,5 +1,0 @@
-[workspace]
-members = [
-    "src/portfolio2_backend"
-]
-resolver = "2"
