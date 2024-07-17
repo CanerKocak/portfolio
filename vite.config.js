@@ -15,14 +15,12 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      "/api": {
-        target: "http://127.0.0.1:3000",
+      '/api': {
+        target: 'http://localhost:3000',
         changeOrigin: true,
-      },
-    },
-    fs: {
-      allow: [path.resolve(__dirname, "./static")],
-    },
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
   },
   plugins: [sveltekit()],
   resolve: {

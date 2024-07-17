@@ -13,22 +13,68 @@ struct About {
 }
 
 impl About {
-  fn new() -> Self {
-          About {
-              name: String::from("Floppa McFlopperson"),
-              title: String::from("Aspiring Flop Developer & Web3 Enthusiast"),
-              summary: String::from("
-                  Creative and ambitious flop development student at Flopschool Flaxion,
-                  passionate about exploring new flopnologies, especially in flop3 and flopchain.
+    fn new() -> Self {
+        About {
+            name: String::from("Caner Kocak"),
+            title: String::from("Aspiring Developer & Tech Enthusiast"),
+            summary: String::from("
+                Hi, coding is what I enjoy, and
+                coding is what I want to do. I
+                don't think there is a single
+                thing in this world that could
+                replace what coding is to me.
+                
+                I'm currently 23 years old and
+                have started to learn coding
+                about 3 years ago. But before
+                pursuing a career as a
+                programmer, I already had some
+                hands-on knowledge from
+                creating/configuring simple
+                Minecraft servers or making
+                small, easy scripts to automate
+                in-game tasks so I could level
+                up while I was away.
+                
+                Years later, when I didn't know
+                what kind of career I wanted, I
+                found an associate degree in
+                software development after first
+                trying to study technical
+                business and law, and I found my
+                place.
+                
+                Currently, I'm trying to build
+                cool Web3 dApps on the Internet
+                Computer protocol, which is an
+                interesting blockchain where you
+                can host websites. It kind of
+                becomes a serverless
+                infrastructure that scales
+                itself, which I find
+                fascinating.
 
-                  Experienced with modern flop technologies and eager to learn more about 
-                  cutting-edge tools in the rapidly evolving flop landscape.
-
-                  Enjoys pushing floundaries and contributing to innovative flopjects.
-                  Particularly interested in smart contracts, Web3, and Internet Computer Protocol (ICP) development.
-              ").trim_start(),
-          }
-      }
+                Furthermore, like the usual
+                programmer, I have lots of side
+                projects that are not finished,
+                but what I do notice is that the
+                value of a side project doesn't
+                necessarily come from finishing
+                it, rather just having fun and
+                gaining hands-on experience.
+                
+                Hobby-wise, it's pretty much
+                just coding projects or watching
+                some series. I don't really have
+                a genre, but I enjoyed Silo,
+                From, Lost, West-world, Dr.
+                House, Big Bang Theory, etc.
+                Music-wise, it's either
+                classical or ambient or
+                hardcore, no in-between.
+            ").trim(),
+        }
+    }
 
     fn display(&self) {
         println!("Name: {}", self.name);
@@ -36,8 +82,6 @@ impl About {
         println!("Summary: {}", self.summary);
     }
 }`;
-
-
 
 const skillsContent = `fn main() {
     let skills = vec![
@@ -73,7 +117,30 @@ const skillsContent = `fn main() {
         skill.display();
     }
 }
-`;
+
+enum ProficiencyLevel {
+    Beginner,
+    Intermediate,
+    Advanced,
+}
+
+struct Skill {
+    name: String,
+    level: ProficiencyLevel,
+}
+
+impl Skill {
+    fn new(name: &str, level: ProficiencyLevel) -> Self {
+        Skill {
+            name: String::from(name),
+            level,
+        }
+    }
+
+    fn display(&self) {
+        println!("Skill: {}, Level: {:?}", self.name, self.level);
+    }
+}`;
 
 const projectsContent = `struct Project {
     name: &'static str,
@@ -89,64 +156,90 @@ fn main() {
         Project {
             name: "DittoICP",
             url: "https://www.dittoicp.com",
-            description: "A solo project developed using SvelteKit for the frontend and Rust for the backend, deployed on the Internet Computer Protocol (ICP).",
+            description: "A solo project developed
+            using SvelteKit for the frontend and
+            Rust for the backend, deployed on the
+            Internet Computer Protocol (ICP).",
             role: "Full-stack Developer",
-            technologies: vec!["JavaScript", "SvelteKit", "Rust", "Internet Computer Protocol (ICP)"],
+            technologies: vec![
+                "JavaScript",
+                "SvelteKit",
+                "Rust",
+                "Internet Computer Protocol (ICP)"
+            ],
             contributions: vec![
-                "Designed and implemented the full-stack architecture",
-                "Developed the frontend using SvelteKit",
+                "Designed and implemented the
+                full-stack architecture",
+                "Developed the frontend using
+                SvelteKit",
                 "Created the backend using Rust",
-                "Deployed and managed the application on ICP",
+                "Deployed and managed the
+                application on ICP",
             ],
         },
         Project {
             name: "Windoge98",
-            url: "https://desktop.windoge98.com / https://github.com/SysLogica/windoge98-vue",
-            description: "A collaborative project recreating a Windows 98-like desktop environment in the browser.",
+            url: "https://desktop.windoge98.com / 
+            https://github.com/SysLogica/windoge98-vue",
+            description: "A collaborative project
+            recreating a Windows 98-like desktop
+            environment in the browser.",
             role: "Frontend Developer",
             technologies: vec!["TypeScript", "Vue.js"],
             contributions: vec![
                 "Implemented desktop icons",
-                "Developed boot screen and shutdown sequences",
-                "Enhanced window handling functionality",
-                "Made various UI tweaks and improvements",
+                "Developed boot screen and
+                shutdown sequences",
+                "Enhanced window handling
+                functionality",
+                "Made various UI tweaks and
+                improvements",
             ],
         },
         Project {
             name: "Dogvertiser",
             url: "https://dogverts.windoge98.com/",
-            description: "An extension of the Windoge98 project, allowing users to create and manage dog-themed advertisements.",
+            description: "An extension of the
+            Windoge98 project, allowing users to
+            create and manage dog-themed
+            advertisements.",
             role: "Full-stack Developer",
             technologies: vec!["TypeScript", "Sveltekit", "Motoko"],
             contributions: vec![
-                "Implemented image cropping and zoom functionality for ad creation",
-                "Improved user interface for intuitive ad creation workflow",
-                "Developed backend logic in Motoko for efficient ad storage and retrieval",
-                "Optimized memory management using Motoko's region-based system",
+                "Implemented image cropping and
+                zoom functionality for ad
+                creation",
+                "Improved user interface for
+                intuitive ad creation workflow",
+                "Developed backend logic in
+                Motoko for efficient ad storage
+                and retrieval",
+                "Optimized memory management
+                using Motoko's region-based
+                system",
             ],
         },
     ];
-}`;
 
-const educationContent = `fn main() {
-    let mut current_edu = Education::new("Flopschool Flaxion", "Ad Flop Development", "Sept 2021 - Feb 2025");
-    current_edu.add_detail("Comprehensive study of flop development with focus on flop technologies and flopchain");
-    current_edu.add_detail("Key courses: Flop Development, Flopbase Management, Flop Engineering, Flopchain Technology");
-    current_edu.add_detail("Participating in flopathons and flop competitions");
-    current_edu.display();
-
-    let mut previous_edu = Education::new("The Flop Flopeum", "FLAVO", "Aug 2017 - May 2019");
-    previous_edu.add_detail("Focus: Floponomics and Social Flops");
-    previous_edu.add_detail("Participated in International Flop College program");
-    previous_edu.add_detail("Completed Floplia business Flopglish course");
-    previous_edu.display();
+    for project in projects {
+        display_project(&project);
+    }
 }
 
-struct Education {
-    institution: String,
-    degree: String,
-    duration: String,
-    details: Vec<String>,
+fn display_project(project: &Project) {
+    println!("Project: {}", project.name);
+    println!("URL: {}", project.url);
+    println!("Description: {}", project.description);
+    println!("Role: {}", project.role);
+    println!("Technologies:");
+    for tech in &project.technologies {
+        println!("  - {}", tech);
+    }
+    println!("Contributions:");
+    for contribution in &project.contributions {
+        println!("  - {}", contribution);
+    }
+    println!();
 }`;
 
 const contactContent = `fn main() {
@@ -156,29 +249,23 @@ const contactContent = `fn main() {
 
 struct ContactInfo {
     email: String,
-    phone: String,
     location: String,
     github: String,
-    linkedin: String,
 }
 
 impl ContactInfo {
     fn new() -> Self {
         ContactInfo {
-            email: String::from("floppa@gmail.com"),
-            phone: String::from("06-6969696969"),
-            location: String::from("floppa street flop floppa, floppacity, flopterlands"),
-            github: String::from("https://github.com/canerkocak"),
-            linkedin: String::from("https://www.linkedin.com/in/floppamcflopperson"),
+            email: String::from("caner1kocak1@gmail.com"),
+            location: String::from("Enschede, The Netherlands"),
+            github: String::from("https://github.com/CanerKocak"),
         }
     }
 
     fn display(&self) {
         println!("Email: {}", self.email);
-        println!("Phone: {}", self.phone);
         println!("Location: {}", self.location);
         println!("GitHub: {}", self.github);
-        println!("LinkedIn: {}", self.linkedin);
     }
 }`;
 
@@ -186,6 +273,6 @@ export const files = writable({
   "about.rs": aboutContent,
   "skills.rs": skillsContent,
   "projects.rs": projectsContent,
-  "education.rs": educationContent,
   "contact.rs": contactContent,
 });
+

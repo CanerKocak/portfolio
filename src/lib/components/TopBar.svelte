@@ -21,12 +21,6 @@
     <div class="flex items-center space-x-4">
       <span class="ml-2.5 font-bold text-3xl bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">CK</span>
       
-      <button 
-        class="px-3 rounded-md bg-gray-700 hover:bg-gray-600 transition-colors duration-200 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-400"
-        on:click={toggleCV}
-      >
-        CV
-      </button>
     </div>
     <div class="flex items-center">
       <a 

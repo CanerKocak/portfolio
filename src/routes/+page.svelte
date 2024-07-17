@@ -16,10 +16,17 @@
   let terminalHeight = writable(200);
   let projectTreeWidth = spring(250);
   let isDragging = false;
-  let isMobile = false;
+  let isMobile = writable(false);
+  let isProjectTreeVisible = writable(true);
 
   function toggleTerminal() {
     isTerminalVisible.update(value => !value);
+  }
+
+  function toggleProjectTree() {
+    if (!$isMobile) {
+      isProjectTreeVisible.update(value => !value);
+    }
   }
 
   function handleTerminalMousedown(event) {
@@ -41,7 +48,7 @@
   }
 
   function handleProjectTreeMousedown(event) {
-    if (isMobile) return;
+    if ($isMobile) return;
     isDragging = true;
     const startX = event.clientX;
     const startWidth = $projectTreeWidth;
@@ -71,7 +78,14 @@
     };
 
     const checkMobile = () => {
-      isMobile = window.innerWidth <= 768;
+      isMobile.set(window.innerWidth <= 768);
+      if ($isMobile) {
+        isProjectTreeVisible.set(false);
+        isTerminalVisible.set(false);
+      } else {
+        isProjectTreeVisible.set(true);
+        isTerminalVisible.set(true);
+      }
     };
 
     window.addEventListener('keydown', handleKeydown);
@@ -88,14 +102,21 @@
 <div class="ide-container">
   <TopBar />
   <div class="ide-main">
-    <div class="project-tree" style="width: {isMobile ? '100%' : `${$projectTreeWidth}px`};">
-      <ProjectTree files={$files} {selectedFile} />
-    </div>
-    {#if !isMobile}
+    {#if $isProjectTreeVisible && !$isMobile}
+      <div class="project-tree" style="width: {$projectTreeWidth}px;">
+        <ProjectTree files={$files} {selectedFile} />
+      </div>
+    {/if}
+    {#if !$isMobile}
       <div class="project-tree-resizer" on:mousedown={handleProjectTreeMousedown}></div>
     {/if}
     <div class="code-area">
       <div class="tabs">
+        {#if !$isMobile}
+          <button class="tab" on:click={toggleProjectTree}>
+            {$isProjectTreeVisible ? 'Hide' : 'Show'} Files
+          </button>
+        {/if}
         {#each Object.keys($files) as file}
           <button
             class="tab {$selectedFile === file ? 'active' : ''}"
@@ -105,10 +126,10 @@
           </button>
         {/each}
       </div>
-      <div class="editor">
-        <CodeEditor content={$files[$selectedFile]} language="rust" />
+      <div class="editor" class:full-height={$isMobile}>
+        <CodeEditor content={$files[$selectedFile]} isMobile={$isMobile} />
       </div>
-      {#if $isTerminalVisible && !isMobile}
+      {#if $isTerminalVisible && !$isMobile}
         <div class="terminal-resizer" on:mousedown={handleTerminalMousedown}></div>
         <div class="terminal" style="height: {$terminalHeight}px;">
           <Terminal />
@@ -188,6 +209,10 @@
     overflow: hidden;
   }
 
+  .editor.full-height {
+    height: calc(100vh - 80px);
+  }
+
   .terminal-resizer {
     height: 5px;
     background-color: #333333;
@@ -205,15 +230,8 @@
       flex-direction: column;
     }
 
-    .project-tree {
-      width: 100% !important;
-      height: 30vh;
-      overflow-y: auto;
-      resize: none;
-    }
-
     .code-area {
-      height: 70vh;
+      height: calc(100vh - 40px);
     }
 
     .tabs {
