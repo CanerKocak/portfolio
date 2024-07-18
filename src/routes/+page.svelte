@@ -23,12 +23,6 @@
     isTerminalVisible.update(value => !value);
   }
 
-  function toggleProjectTree() {
-    if (!$isMobile) {
-      isProjectTreeVisible.update(value => !value);
-    }
-  }
-
   function handleTerminalMousedown(event) {
     const startY = event.clientY;
     const startHeight = $terminalHeight;
@@ -112,11 +106,6 @@
     {/if}
     <div class="code-area">
       <div class="tabs">
-        {#if !$isMobile}
-          <button class="tab" on:click={toggleProjectTree}>
-            {$isProjectTreeVisible ? 'Hide' : 'Show'} Files
-          </button>
-        {/if}
         {#each Object.keys($files) as file}
           <button
             class="tab {$selectedFile === file ? 'active' : ''}"
