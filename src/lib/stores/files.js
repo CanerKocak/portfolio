@@ -188,7 +188,6 @@ impl ContactInfo {
 }`;
 
 export const files = writable({
-  "about.rs": aboutContent,
   "skills.rs": skillsContent,
   "projects.rs": projectsContent,
   "contact.rs": contactContent,
