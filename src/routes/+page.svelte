@@ -10,7 +10,7 @@
   import { files } from '$lib/stores/files.js';
   import "../app.css";
 
-  const selectedFile = writable('about.rs');
+  const selectedFile = writable('contact.rs');
 
   let isTerminalVisible = writable(true);
   let terminalHeight = writable(200);
