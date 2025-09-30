@@ -14,12 +14,18 @@ html, body {
   overflow: hidden;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Fira Code', monospace;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.6;
   color: #ffffff;
   background-color: #282c34;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Remove default list styles */
@@ -49,24 +55,30 @@ a:hover {
 
 /* Custom Scrollbar Styles */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #2a2a2a;
+  background: #1e1e1e;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #4CAF50;
-  border-radius: 6px;
+  background: #007acc;
+  border-radius: 5px;
+  border: 2px solid #1e1e1e;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #45a049;
+  background: #0098ff;
+}
+
+::-webkit-scrollbar-corner {
+  background: #1e1e1e;
 }
 
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #4CAF50 #2a2a2a;
+  scrollbar-color: #007acc #1e1e1e;
 }

@@ -10,7 +10,7 @@
   import { files } from '$lib/stores/files.js';
   import "../app.css";
 
-  const selectedFile = writable('contact.rs');
+  const selectedFile = writable('projects.rs');
 
   let isTerminalVisible = writable(true);
   let terminalHeight = writable(200);
@@ -158,6 +158,11 @@
     width: 5px;
     background-color: #333333;
     cursor: ew-resize;
+    transition: background-color 0.2s;
+  }
+
+  .project-tree-resizer:hover {
+    background-color: #007acc;
   }
 
   .code-area {
@@ -172,25 +177,50 @@
     background-color: #2d2d2d;
     border-bottom: 1px solid #333333;
     overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .tabs::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .tabs::-webkit-scrollbar-thumb {
+    background: #007acc;
+    border-radius: 3px;
   }
 
   .tab {
-    padding: 8px 16px;
+    padding: 10px 20px;
     background-color: #2d2d2d;
     border: none;
-    color: #ffffff;
+    color: #cccccc;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.2s ease;
     white-space: nowrap;
+    position: relative;
+    font-size: 13px;
+    border-right: 1px solid #1e1e1e;
   }
 
   .tab:hover {
     background-color: #3c3c3c;
+    color: #ffffff;
   }
 
   .tab.active {
     background-color: #1e1e1e;
+    color: #ffffff;
     border-bottom: 2px solid #007acc;
+  }
+
+  .tab.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #007acc, #0098ff);
   }
 
   .editor {
@@ -206,6 +236,11 @@
     height: 5px;
     background-color: #333333;
     cursor: ns-resize;
+    transition: background-color 0.2s;
+  }
+
+  .terminal-resizer:hover {
+    background-color: #007acc;
   }
 
   .terminal {

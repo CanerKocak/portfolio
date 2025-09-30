@@ -6,15 +6,29 @@ const skillsContent = `fn main() {
         // Front-end technologies
         Skill::new("HTML/CSS/Tailwind", ProficiencyLevel::Intermediate),
         Skill::new("JavaScript", ProficiencyLevel::Intermediate),
-        Skill::new("TypeScript", ProficiencyLevel::Beginner),
-        Skill::new("Svelte", ProficiencyLevel::Beginner),
+        Skill::new("TypeScript", ProficiencyLevel::Intermediate),
+        Skill::new("Svelte", ProficiencyLevel::Intermediate),
+        Skill::new("SvelteKit", ProficiencyLevel::Intermediate),
         Skill::new("Vue", ProficiencyLevel::Beginner),
 
         // Back-end and general-purpose languages
+        Skill::new("Rust", ProficiencyLevel::Intermediate),
         Skill::new("Python", ProficiencyLevel::Intermediate),
-        Skill::new("Java", ProficiencyLevel::Beginner),
-        Skill::new("Rust", ProficiencyLevel::Beginner),
         Skill::new("Motoko", ProficiencyLevel::Intermediate),
+        Skill::new("Java", ProficiencyLevel::Beginner),
+
+        // Blockchain & Web3
+        Skill::new("Internet Computer Protocol", ProficiencyLevel::Intermediate),
+        Skill::new("ICRC Standards", ProficiencyLevel::Intermediate),
+        Skill::new("Chain-key Cryptography", ProficiencyLevel::Intermediate),
+        Skill::new("Threshold Signatures", ProficiencyLevel::Intermediate),
+        Skill::new("Solana SDK", ProficiencyLevel::Beginner),
+
+        // Advanced Topics
+        Skill::new("WebAssembly SIMD", ProficiencyLevel::Intermediate),
+        Skill::new("AI Model Orchestration", ProficiencyLevel::Intermediate),
+        Skill::new("WebSockets", ProficiencyLevel::Intermediate),
+        Skill::new("Actix-web", ProficiencyLevel::Intermediate),
 
         // Databases
         Skill::new("SQLite", ProficiencyLevel::Intermediate),
@@ -23,7 +37,9 @@ const skillsContent = `fn main() {
         // DevOps and version control
         Skill::new("Git", ProficiencyLevel::Intermediate),
         Skill::new("Docker", ProficiencyLevel::Beginner),
-        Skill::new("Terraform", ProficiencyLevel::Beginner),
+
+        // Integration
+        Skill::new("Web2 API Integrations", ProficiencyLevel::Intermediate),
 
         // Soft skills
         Skill::new("Problem-solving", ProficiencyLevel::Intermediate),
@@ -72,34 +88,132 @@ const projectsContent = `struct Project {
 fn main() {
     let projects = vec![
         Project {
-            name: "DittoICP",
-            url: "https://www.dittoicp.com",
-            description: "A solo project developed
-            using SvelteKit for the frontend and
-            Rust for the backend, deployed on the
-            Internet Computer Protocol (ICP).",
-            role: "Full-stack Developer",
+            name: "Kong DEX",
+            url: "https://kongswap.io",
+            description: "Extended transaction
+            verification and built Web2 integrations
+            for production decentralized exchange
+            with $5M+ TVL.",
+            role: "Integration & Backend Developer",
             technologies: vec![
-                "JavaScript",
-                "SvelteKit",
                 "Rust",
-                "Internet Computer Protocol (ICP)"
+                "TypeScript",
+                "WebSockets",
+                "Solana SDK",
+                "ICRC Standards",
+                "Chain-key Cryptography"
             ],
             contributions: vec![
-                "Designed and implemented the
-                full-stack architecture",
-                "Developed the frontend using
-                SvelteKit",
-                "Created the backend using Rust",
-                "Deployed and managed the
-                application on ICP",
+                "Extended transaction verification
+                on smart contract with $5M+ TVL",
+                "Built initial backend to frontend
+                for swaps, LP, and token management",
+                "Built canister-to-Web2 API
+                integrations: CoinMarketCap,
+                CoinGecko, Token Terminal,
+                DexTools, DexScreener",
+                "Built Solana to ICP cross-chain
+                bridge MVP using threshold Schnorr
+                signatures - canister acts as hot
+                wallet signing Solana transactions
+                via chain-key cryptography",
+            ],
+        },
+        Project {
+            name: "Kong Launchpad",
+            url: "https://github.com/CanerKocak",
+            description: "L2 launcher factory for
+            users to spin up their own proof-of-work
+            tokens with dedicated mining canisters.",
+            role: "Full-stack Developer",
+            technologies: vec![
+                "Rust",
+                "WebAssembly SIMD",
+                "ICP Canisters",
+                "Stable Structures"
+            ],
+            contributions: vec![
+                "Built L2 launcher factory - users
+                can spin up their own proof-of-work
+                tokens",
+                "Users can mine any token they
+                want with dedicated mining
+                canisters",
+                "Custom scalar hash optimized for
+                WebAssembly using IC's SIMD vector
+                instructions",
+                "Token-gated hashing compute
+                instead of cycles",
+                "Multi-canister architecture
+                (launchpad, miner, PoW backend
+                per token)",
+                "Secure payment validation with
+                stable storage for hash allowances",
+            ],
+        },
+        Project {
+            name: "Ditto",
+            url: "https://www.dittoicp.com",
+            description: "AI-powered themed drawing
+            platform with self-moderation using
+            cascading AI models.",
+            role: "Full-stack Developer",
+            technologies: vec![
+                "Rust",
+                "SvelteKit",
+                "Svelte 5",
+                "AI Orchestration",
+                "fabric.js",
+                "three.js"
+            ],
+            contributions: vec![
+                "Built themed drawing creation
+                platform with multiple canvas
+                engines",
+                "Architected self-moderation
+                system with cascading AI models
+                (rotating for speed/quality
+                balance)",
+                "Integrated Professor Dom agent for
+                drawing reviews and scoring",
+                "AI-based scoring system with
+                customizable length themes/contests",
+                "Dungeon gameplay with AI-generated
+                narratives",
+                "DITTO token economy",
+            ],
+        },
+        Project {
+            name: "HTTPS Outcall Proxy",
+            url: "https://github.com/CanerKocak",
+            description: "External proxy server
+            polling IC canisters and streaming AI
+            responses from external APIs.",
+            role: "Backend Developer",
+            technologies: vec![
+                "Rust",
+                "Actix-web",
+                "rustls",
+                "WebSockets",
+                "OpenRouter/Google AI APIs"
+            ],
+            contributions: vec![
+                "Built external proxy polling IC
+                canisters for pending AI requests",
+                "Streams AI responses from external
+                APIs back to canisters",
+                "Batched update system reducing
+                canister message congestion",
+                "SSL/TLS with certificate
+                management and caching",
+                "Bridges IC canisters with external
+                AI services",
             ],
         },
         Project {
             name: "Windoge98",
-            url: "https://desktop.windoge98.com / 
-            https://github.com/SysLogica/windoge98-vue",
-            description: "A collaborative project
+            url: "https://desktop.windoge98.com",
+            description: "Collaborative project
             recreating a Windows 98-like desktop
             environment in the browser.",
             role: "Frontend Developer",
@@ -117,24 +231,21 @@ fn main() {
         Project {
             name: "Dogvertiser",
             url: "https://dogverts.windoge98.com/",
-            description: "An extension of the
-            Windoge98 project, allowing users to
-            create and manage dog-themed
-            advertisements.",
+            description: "Extension of the Windoge98
+            project, allowing users to create and
+            manage dog-themed advertisements.",
             role: "Full-stack Developer",
-            technologies: vec!["TypeScript", "Sveltekit", "Motoko"],
+            technologies: vec!["TypeScript", "SvelteKit", "Motoko"],
             contributions: vec![
                 "Implemented image cropping and
-                zoom functionality for ad
-                creation",
+                zoom functionality for ad creation",
                 "Improved user interface for
                 intuitive ad creation workflow",
-                "Developed backend logic in
-                Motoko for efficient ad storage
-                and retrieval",
-                "Optimized memory management
-                using Motoko's region-based
-                system",
+                "Developed backend logic in Motoko
+                for efficient ad storage and
+                retrieval",
+                "Optimized memory management using
+                Motoko's region-based system",
             ],
         },
     ];
